@@ -27,6 +27,12 @@ public class Main {
 		System.out.println("getHourInSeconds30: " + hour30.getHourInSeconds());
 		System.out.println("getHourPretty24: " + hour24.getHourPretty());
 		System.out.println("getHourPretty30: " + hour30.getHourPretty());
+		
+		System.out.println();System.out.println();
+		
+		HourSystemGeneralization hourSysGen = new HourSystemGeneralization(); 
+		System.out.println("getHourSysGenInSeconds: " + hourSysGen.getHourInSeconds());
+		System.out.println("getHourSysGenPretty: " + hourSysGen.getHourPretty());
 	}
 
 }

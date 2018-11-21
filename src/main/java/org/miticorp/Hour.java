@@ -13,7 +13,7 @@ public abstract class Hour {
 	protected int numberOfMilisecondsPerSecond;
 	protected int numberOfSecondsPerDay;
 
-	int getHourInSeconds() {
+	protected int getHourInSeconds() {
 		return 
 				hour * numberOfMinutesPerHour * numberOfSecondsPerMinute + 
 				minute * numberOfSecondsPerMinute +
@@ -21,7 +21,7 @@ public abstract class Hour {
 				milisecond / numberOfMilisecondsPerSecond;
 	}
 
-	String getHourPretty() {
+	protected String getHourPretty() {
 		return hour + ":" + minute + ":" + second + ":" + milisecond;
 	}
 }
