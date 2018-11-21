@@ -2,8 +2,8 @@ package org.miticorp;
 
 //TODO java doc and test classes
 public class Hour30 extends Hour {
-
-	public Hour30() {
+	
+	{
 		numberOfHoursPerDay = 30;
 		numberOfMinutesPerHour = 100;
 		numberOfSecondsPerMinute = 100;
@@ -13,7 +13,9 @@ public class Hour30 extends Hour {
 				numberOfHoursPerDay *
 				numberOfMinutesPerHour *
 				numberOfSecondsPerMinute;
+	}
 
+	public Hour30() {
 		Hour hour = HourOps.getTimeFromhoursysTohoursys(new Hour24(), this);
 		this.hour = hour.hour;
 		this.minute = hour.minute;
@@ -22,8 +24,6 @@ public class Hour30 extends Hour {
 	}
 
 	public Hour30(int hour, int minute, int second, int milisecond) {
-		this();
-
 		this.hour = hour;
 		this.minute = minute;
 		this.second = second;

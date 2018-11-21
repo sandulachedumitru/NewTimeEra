@@ -13,13 +13,6 @@ public abstract class Hour {
 	protected int numberOfMilisecondsPerSecond;
 	protected int numberOfSecondsPerDay;
 
-	int getHourInSecondsNow() {
-		return
-				hour * numberOfMinutesPerHour * numberOfSecondsPerMinute +
-				minute * numberOfSecondsPerMinute +
-				second;
-	}
-
 	int getHourInSeconds() {
 		return 
 				hour * numberOfMinutesPerHour * numberOfSecondsPerMinute + 

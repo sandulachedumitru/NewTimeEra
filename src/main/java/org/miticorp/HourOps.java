@@ -10,8 +10,10 @@ public class HourOps {
 	}
 
 	public static Hour getTimeFromhoursysTohoursys(Hour fromHour, Hour toHour) {
+		if (fromHour == null || toHour == null) return null;
+		if (fromHour.getClass().equals(toHour.getClass())) return fromHour;
+		
 		boolean flag = false;
-		// TODO test null fromHour
 
 		int fromHourInSeconds = fromHour.getHourInSeconds();
 		int toHourInSeconds = (int) (fromHourInSeconds * getTransformationFactor(fromHour, toHour));
