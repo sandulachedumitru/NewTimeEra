@@ -24,10 +24,11 @@ public class Hour30 extends Hour {
 	}
 
 	public Hour30(int hour, int minute, int second, int milisecond) {
-		this.hour = hour;
-		this.minute = minute;
-		this.second = second;
-		this.milisecond = milisecond;
+		validate(hour, minute, second, milisecond);
+//		this.hour = hour;
+//		this.minute = minute;
+//		this.second = second;
+//		this.milisecond = milisecond;
 	}
 
 }

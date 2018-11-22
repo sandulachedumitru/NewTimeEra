@@ -30,7 +30,7 @@ public class Main {
 		
 		System.out.println();System.out.println();
 		
-		HourSystemGeneralization hourSysGen = new HourSystemGeneralization(); 
+		HourSystemGeneralization hourSysGen = new HourSystemGeneralization(23, 6000, 60, 60); 
 		System.out.println("getHourSysGenInSeconds: " + hourSysGen.getHourInSeconds());
 		System.out.println("getHourSysGenPretty: " + hourSysGen.getHourPretty());
 	}
