@@ -30,9 +30,18 @@ public class Main {
 		
 		System.out.println();System.out.println();
 		
-		HourSystemGeneralization hourSysGen = new HourSystemGeneralization(23, 6000, 60, 60); 
+		HourSystemGeneralization hourSysGen = new HourSystemGeneralization(23, 59, 59, 1000); 
 		System.out.println("getHourSysGenInSeconds: " + hourSysGen.getHourInSeconds());
 		System.out.println("getHourSysGenPretty: " + hourSysGen.getHourPretty());
+		
+		System.out.println();System.out.println();
+		
+		hour24 = new Hour24(16, 44, 49, 0);
+		hour30 = (Hour30) HourOps.getTimeFromhoursysTohoursys2(hour24, new Hour30());
+		System.out.println("getHourInMiliseconds24: " + hour24.getHourInMiliseconds());
+		System.out.println("getHourInMiliseconds30: " + hour30.getHourInMiliseconds());
+		System.out.println("getHourPretty24: " + hour24.getHourPretty());
+		System.out.println("getHourPretty30: " + hour30.getHourPretty());
 	}
 
 }

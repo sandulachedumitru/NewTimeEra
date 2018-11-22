@@ -13,6 +13,12 @@ public class Hour30 extends Hour {
 				numberOfHoursPerDay *
 				numberOfMinutesPerHour *
 				numberOfSecondsPerMinute;
+		
+		numberOfMilisecondsPerDay =
+				numberOfHoursPerDay *
+				numberOfMinutesPerHour *
+				numberOfSecondsPerMinute *
+				numberOfMilisecondsPerSecond;
 	}
 
 	public Hour30() {
@@ -24,11 +30,7 @@ public class Hour30 extends Hour {
 	}
 
 	public Hour30(int hour, int minute, int second, int milisecond) {
-		validate(hour, minute, second, milisecond);
-//		this.hour = hour;
-//		this.minute = minute;
-//		this.second = second;
-//		this.milisecond = milisecond;
+		validatesAndFormatsHour(hour, minute, second, milisecond);
 	}
 
 }
