@@ -14,14 +14,12 @@ public class HourSystemGeneralization extends Hour {
 				numberOfSecondsPerMinute;
 		
 		numberOfMilisecondsPerDay =
-				numberOfHoursPerDay *
-				numberOfMinutesPerHour *
-				numberOfSecondsPerMinute *
+				numberOfSecondsPerDay *
 				numberOfMilisecondsPerSecond;
 	}
 
 	public HourSystemGeneralization() {
-		Hour hour = HourOps.getTimeFromhoursysTohoursys(new Hour24(), this);
+		Hour hour = HourOps.getTimeFromhoursysTohoursys2(new Hour24(), this);
 		this.hour = hour.hour;
 		this.minute = hour.minute;
 		this.second = hour.second;
@@ -30,7 +28,7 @@ public class HourSystemGeneralization extends Hour {
 
 	public HourSystemGeneralization(int hour, int minute, int second, int milisecond) {
 		Hour hourValidation = validatesAndFormatsHour(hour, minute, second, milisecond);
-		Hour newHour = HourOps.getTimeFromhoursysTohoursys(new Hour24(hour, minute, second, milisecond), hourValidation);
+		Hour newHour = HourOps.getTimeFromhoursysTohoursys2(new Hour24(hour, minute, second, milisecond), hourValidation);
 		this.hour = newHour.hour;
 		this.minute = newHour.minute;
 		this.second = newHour.second;
@@ -45,11 +43,35 @@ public class HourSystemGeneralization extends Hour {
 		this.numberOfSecondsPerMinute = numberOfSecondsPerMinute;
 		this.numberOfMilisecondsPerSecond = numberOfMilisecondsPerSecond;
 
-		Hour hourValidation = validatesAndFormatsHour(hour, minute, second, milisecond);
-		Hour newHour = HourOps.getTimeFromhoursysTohoursys(new Hour24(hour, minute, second, milisecond), hourValidation);
-		this.hour = newHour.hour;
-		this.minute = newHour.minute;
-		this.second = newHour.second;
-		this.milisecond = newHour.milisecond;
-	}	
+		this.numberOfSecondsPerDay = 
+				numberOfHoursPerDay *
+				numberOfMinutesPerHour *
+				numberOfSecondsPerMinute;
+		
+		this.numberOfMilisecondsPerDay =
+				this.numberOfSecondsPerDay *
+				numberOfMilisecondsPerSecond;
+
+		HourOps.getTimeFromhoursysTohoursys2(new Hour24(hour, minute, second, milisecond), this);
+	}
+	
+	public HourSystemGeneralization(
+			int numberOfHoursPerDay, 	int numberOfMinutesPerHour, 	int numberOfSecondsPerMinute, 	int numberOfMilisecondsPerSecond,
+			Hour fromSystemHour) {
+		this.numberOfHoursPerDay = numberOfHoursPerDay;
+		this.numberOfMinutesPerHour = numberOfMinutesPerHour;
+		this.numberOfSecondsPerMinute = numberOfSecondsPerMinute;
+		this.numberOfMilisecondsPerSecond = numberOfMilisecondsPerSecond;
+
+		this.numberOfSecondsPerDay = 
+				numberOfHoursPerDay *
+				numberOfMinutesPerHour *
+				numberOfSecondsPerMinute;
+		
+		this.numberOfMilisecondsPerDay =
+				this.numberOfSecondsPerDay *
+				numberOfMilisecondsPerSecond;
+
+		HourOps.getTimeFromhoursysTohoursys2(fromSystemHour, this);
+	}
 }

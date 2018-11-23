@@ -40,22 +40,23 @@ public abstract class Hour {
 		fmi = milisecond / numberOfMilisecondsPerSecond;
 		
 		int s, fs;
-		s = second % numberOfSecondsPerMinute; s += fmi;
-		fs = second / numberOfSecondsPerMinute;
+		s = (second + fmi) % numberOfSecondsPerMinute;
+		fs = (second + fmi) / numberOfSecondsPerMinute;
 		
 		int m, fm;
-		m = minute % numberOfMinutesPerHour; m += fs;
-		fm = minute / numberOfMinutesPerHour;
+		m = (minute + fs) % numberOfMinutesPerHour;
+		fm = (minute + fs) / numberOfMinutesPerHour;
 		
-		/* useful when working with days and will replace the below equivalent code block
+		
 		int h, fh;
 		h = (hour + fm) % numberOfHoursPerDay; // hour of the day
 		fh = (hour + fm) / numberOfHoursPerDay; // number of days
-		*/
 		
+		/* useful when working with days and will replace the below equivalent code block
 		int h, fh;
-		h = hour % numberOfHoursPerDay; h += fm;
- 		fh = hour / numberOfHoursPerDay;
+		h = (hour + fm) % numberOfHoursPerDay;
+ 		fh = (hour + fm) / numberOfHoursPerDay;
+		*/
 		
 		this.hour = h;
 		this.minute = m;

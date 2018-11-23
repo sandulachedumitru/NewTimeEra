@@ -15,9 +15,7 @@ public class Hour30 extends Hour {
 				numberOfSecondsPerMinute;
 		
 		numberOfMilisecondsPerDay =
-				numberOfHoursPerDay *
-				numberOfMinutesPerHour *
-				numberOfSecondsPerMinute *
+				numberOfSecondsPerDay *
 				numberOfMilisecondsPerSecond;
 	}
 

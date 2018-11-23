@@ -79,9 +79,6 @@ public class HourOps {
 		int index = 0;
 
 		dividend = toHourInMiliseconds;
-		divisor = toHour.numberOfSecondsPerMinute;
-
-		
 		
 		// dividend  / divisor = result + rest
 		// dividend, divisor, result, rest are integers
@@ -95,8 +92,6 @@ public class HourOps {
 			dividend = result;
 			array.add(rest);
 		}
-		
-		System.out.println("divisor2: " + divisor2);
 		
 		switch (array.size()) {
 			case 4:		toHour.milisecond = array.get(0);
@@ -126,8 +121,6 @@ public class HourOps {
 						break;
 
 		}
-		
-
 		return toHour;
 	}
 
