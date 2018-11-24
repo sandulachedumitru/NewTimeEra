@@ -2,66 +2,52 @@ package org.miticorp;
 
 // TODO java doc and test classes
 public abstract class Hour {
-	protected int hour;
-	protected int minute;
-	protected int second;
-	protected int milisecond;
+	protected long hour;
+	protected long minute;
+	protected long second;
+	protected long millisecond;
 
-	protected int numberOfHoursPerDay;
-	protected int numberOfMinutesPerHour;
-	protected int numberOfSecondsPerMinute;
-	protected int numberOfMilisecondsPerSecond;
-	protected int numberOfSecondsPerDay;
-	protected int numberOfMilisecondsPerDay;
-
-	protected int getHourInSeconds() {
-		return 
-				hour * numberOfMinutesPerHour * numberOfSecondsPerMinute + 
-				minute * numberOfSecondsPerMinute +
-				second +
-				milisecond / numberOfMilisecondsPerSecond;
-	}
+	protected long numberOfHoursPerDay;
+	protected long numberOfMinutesPerHour;
+	protected long numberOfSecondsPerMinute;
+	protected long numberOfMillisecondsPerSecond;
+	protected long numberOfMillisecondsPerDay;
 	
-	protected int getHourInMiliseconds() {
+	protected long getHourInMilliseconds() {
 		return
-				hour * numberOfMinutesPerHour * numberOfSecondsPerMinute * numberOfMilisecondsPerSecond + 
-				minute * numberOfSecondsPerMinute * numberOfMilisecondsPerSecond +
-				second * numberOfMilisecondsPerSecond +
-				milisecond;
+				hour * numberOfMinutesPerHour * numberOfSecondsPerMinute * numberOfMillisecondsPerSecond + 
+				minute * numberOfSecondsPerMinute * numberOfMillisecondsPerSecond +
+				second * numberOfMillisecondsPerSecond +
+				millisecond;
 	}
 
 	protected String getHourPretty() {
-		return hour + ":" + minute + ":" + second + ":" + milisecond;
+		return hour + ":" + minute + ":" + second + ":" + millisecond;
 	}
 	
-	protected Hour validatesAndFormatsHour(int hour, int minute, int second, int milisecond) {
-		int mi, fmi;
-		mi = milisecond % numberOfMilisecondsPerSecond;
-		fmi = milisecond / numberOfMilisecondsPerSecond;
+	// negative values need to be analyzed
+	protected Hour validatesAndFormatsHour(long hour, long minute, long second, long milisecond) {
+		long mi, fmi;
+		mi = milisecond % numberOfMillisecondsPerSecond;
+		fmi = milisecond / numberOfMillisecondsPerSecond;
 		
-		int s, fs;
+		long s, fs;
 		s = (second + fmi) % numberOfSecondsPerMinute;
 		fs = (second + fmi) / numberOfSecondsPerMinute;
 		
-		int m, fm;
+		long m, fm;
 		m = (minute + fs) % numberOfMinutesPerHour;
 		fm = (minute + fs) / numberOfMinutesPerHour;
 		
 		
-		int h, fh;
+		long h, fh;
 		h = (hour + fm) % numberOfHoursPerDay; // hour of the day
 		fh = (hour + fm) / numberOfHoursPerDay; // number of days
-		
-		/* useful when working with days and will replace the below equivalent code block
-		int h, fh;
-		h = (hour + fm) % numberOfHoursPerDay;
- 		fh = (hour + fm) / numberOfHoursPerDay;
-		*/
 		
 		this.hour = h;
 		this.minute = m;
 		this.second = s;
-		this.milisecond = mi;
+		this.millisecond = mi;
 		
 		return this;
 	}

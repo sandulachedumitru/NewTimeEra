@@ -7,27 +7,21 @@ public class Hour30 extends Hour {
 		numberOfHoursPerDay = 30;
 		numberOfMinutesPerHour = 100;
 		numberOfSecondsPerMinute = 100;
-		numberOfMilisecondsPerSecond = 1000;
-
-		numberOfSecondsPerDay = 
+		numberOfMillisecondsPerSecond = 1000;
+		numberOfMillisecondsPerDay = 
 				numberOfHoursPerDay *
 				numberOfMinutesPerHour *
-				numberOfSecondsPerMinute;
-		
-		numberOfMilisecondsPerDay =
-				numberOfSecondsPerDay *
-				numberOfMilisecondsPerSecond;
+				numberOfSecondsPerMinute *
+				numberOfMillisecondsPerSecond;
 	}
 
 	public Hour30() {
-		Hour hour = HourOps.getTimeFromhoursysTohoursys(new Hour24(), this);
-		this.hour = hour.hour;
-		this.minute = hour.minute;
-		this.second = hour.second;
-		this.milisecond = hour.milisecond;
+		// this method initializes this.{hour, minute, second, millisecond}
+		HourOps.getTimeFromhoursysTohoursys(new Hour24(), this);
 	}
 
-	public Hour30(int hour, int minute, int second, int milisecond) {
+	public Hour30(long hour, long minute, long second, long milisecond) {
+		// this method initializes this.{hour, minute, second, millisecond}
 		validatesAndFormatsHour(hour, minute, second, milisecond);
 	}
 
