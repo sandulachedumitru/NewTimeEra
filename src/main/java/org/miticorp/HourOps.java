@@ -14,8 +14,12 @@ public class HourOps {
 	}
 
 	public static Hour getTimeFromhoursysTohoursys(Hour fromHour, Hour toHour) {
-		if (fromHour == null || toHour == null) return null;
-		if (fromHour.getClass().equals(toHour.getClass())) return fromHour;
+		if (fromHour == null || toHour == null) {
+			if (fromHour != null) return fromHour;
+			else
+				if (toHour != null) return toHour;
+				else return new Hour24();
+		}
 		
 		boolean flag = false;
 
@@ -64,9 +68,13 @@ public class HourOps {
 	
 	// TODO validatesAndFormatsHour method could be moved here in this class
 	public static Hour getTimeFromhoursysTohoursys2(Hour fromHour, Hour toHour) {
-		if (fromHour == null || toHour == null) return null;
-//		if (fromHour.getClass().equals(toHour.getClass())) return fromHour;
-		
+		if (fromHour == null || toHour == null) {
+			if (fromHour != null) return fromHour;
+			else
+				if (toHour != null) return toHour;
+				else return new Hour24();
+		}
+
 		boolean flag = false;
 
 		int fromHourInMiliseconds = fromHour.getHourInMiliseconds();

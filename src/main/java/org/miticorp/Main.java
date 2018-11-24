@@ -66,11 +66,15 @@ public class Main {
 		
 		System.out.println();System.out.println();
 		
-		//TODO Nu calculeaza corect
 		HourSystemGeneralization hourSysGen243 = new HourSystemGeneralization(24, 100, 100, 1000, hourSysGen3); 
 		System.out.println("getHourSysGenInMiliseconds: " + hourSysGen243.getHourInMiliseconds());
 		System.out.println("getHourSysGenPretty: " + hourSysGen243.getHourPretty());
-
+		
+		System.out.println();System.out.println();
+		
+		hourSysGen = new HourSystemGeneralization(24, 100, 100, 1000, null); 
+		System.out.println("getHourSysGenInMiliseconds: " + hourSysGen.getHourInMiliseconds());
+		System.out.println("getHourSysGenPretty: " + hourSysGen.getHourPretty());
 	}
 
 }
