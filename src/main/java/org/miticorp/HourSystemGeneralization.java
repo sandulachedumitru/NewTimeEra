@@ -19,20 +19,12 @@ public class HourSystemGeneralization extends Hour {
 	}
 
 	public HourSystemGeneralization() {
-		Hour hour = HourOps.getTimeFromhoursysTohoursys2(new Hour24(), this);
-		this.hour = hour.hour;
-		this.minute = hour.minute;
-		this.second = hour.second;
-		this.milisecond = hour.milisecond;
+		HourOps.getTimeFromhoursysTohoursys2(new Hour24(), this);
+
 	}
 
 	public HourSystemGeneralization(int hour, int minute, int second, int milisecond) {
-		Hour hourValidation = validatesAndFormatsHour(hour, minute, second, milisecond);
-		Hour newHour = HourOps.getTimeFromhoursysTohoursys2(new Hour24(hour, minute, second, milisecond), hourValidation);
-		this.hour = newHour.hour;
-		this.minute = newHour.minute;
-		this.second = newHour.second;
-		this.milisecond = newHour.milisecond;
+		HourOps.getTimeFromhoursysTohoursys2(new Hour24(hour, minute, second, milisecond), this);
 	}
 
 	public HourSystemGeneralization(

@@ -65,7 +65,7 @@ public class HourOps {
 	// TODO validatesAndFormatsHour method could be moved here in this class
 	public static Hour getTimeFromhoursysTohoursys2(Hour fromHour, Hour toHour) {
 		if (fromHour == null || toHour == null) return null;
-		if (fromHour.getClass().equals(toHour.getClass())) return fromHour;
+//		if (fromHour.getClass().equals(toHour.getClass())) return fromHour;
 		
 		boolean flag = false;
 
