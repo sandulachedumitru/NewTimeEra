@@ -25,52 +25,25 @@ public abstract class Hour {
 		return hour + ":" + minute + ":" + second + ":" + millisecond;
 	}
 
-	// TODO negative values need to be analyzed
-	// not working, wrong values
 	protected Hour validatesAndFormatsHour(long hour, long minute, long second, long millisecond) {
 		long mi, fmi, s, fs, m, fm, h, fh;
+		Values values;
 
-		mi = millisecond % numberOfMillisecondsPerSecond;
-		fmi = millisecond / numberOfMillisecondsPerSecond;
+		values = getValues(millisecond, numberOfMillisecondsPerSecond, 0L);
+		mi = values.value;
+		fmi = values.frequency;
 
-		if (second < 0) {
-			s = (numberOfSecondsPerMinute + second + fmi) % numberOfSecondsPerMinute;
-			fs = (numberOfSecondsPerMinute + second + fmi) / numberOfSecondsPerMinute;
-		} else {
-			if (second + fmi >= 0) {
-				s = (second + fmi) % numberOfSecondsPerMinute;
-				fs = (second + fmi) / numberOfSecondsPerMinute;
-			} else {
-				s = (numberOfSecondsPerMinute - (second + fmi)) % numberOfSecondsPerMinute;
-				fs = -(second + fmi) / numberOfSecondsPerMinute; // ????
-			}
-		}
+		values = getValues(second, numberOfSecondsPerMinute, fmi);
+		s = values.value;
+		fs = values.frequency;
+		
+		values = getValues(minute, numberOfMinutesPerHour, fs);
+		m = values.value;
+		fm = values.frequency;
 
-		if (minute < 0) {
-			m = (numberOfMinutesPerHour + minute + fs) % numberOfMinutesPerHour;
-			fm = (numberOfMinutesPerHour + minute + fs) / numberOfMinutesPerHour;
-		} else {
-			if (minute + fs >= 0) {
-				m = (minute + fs) % numberOfMinutesPerHour;
-				fm = (minute + fs) / numberOfMinutesPerHour;
-			} else {
-				m = (numberOfMinutesPerHour - minute + fs) % numberOfMinutesPerHour;
-				fm = -(minute + fs) / numberOfMinutesPerHour; // ????
-			}
-		}
-
-		if (hour < 0) {
-			h = (numberOfHoursPerDay + hour + fm) % numberOfHoursPerDay; // hour of the day
-			fh = (numberOfHoursPerDay + hour + fm) / numberOfHoursPerDay; // number of days
-		} else {
-			if (hour + fm >= 0) {
-				h = (hour + fm) % numberOfHoursPerDay; // hour of the day
-				fh = (hour + fm) / numberOfHoursPerDay; // number of days
-			} else {
-				h = (numberOfHoursPerDay - hour + fm) % numberOfHoursPerDay; // hour of the day
-				fh = -(hour + fm) / numberOfHoursPerDay; // number of days // ????
-			}
-		}
+		values = getValues(hour, numberOfHoursPerDay, fm);
+		h = values.value; // hour of the day
+		fh = values.frequency; // number of days
 
 		this.hour = h;
 		this.minute = m;
@@ -78,5 +51,41 @@ public abstract class Hour {
 		this.millisecond = mi;
 
 		return this;
+	}
+	
+	/*
+	 * Algorithm for millisecond (identical for: second, minute, hour)
+	 * millisecond 	= -1000	< 0	--> s == 0 	--> 1000 + (-1000)	= 0		--> mi = 0;		fmi = -1
+	 * millisecond 	= -1	< 0 --> s > 0 	--> 1000 + (-1)		= 999	--> mi = 999;	fmi = 0;
+	 * millisecond 	= -1001	< 0 --> s < 0 	--> 1000 + (-1001)	= -1	--> mi = 999	fmi = -1
+	 * millisecond 	= 999	> 0 --> mi = 999; fmi = 0;
+	 * 				= 2222			mi = 222; fmi = 2;
+	 * millisecond = 0 			--> mi = 0;	 fmi = 0
+	 */
+	private Values getValues(long unit, long numberPerUnit, long addition) {
+		Values values = new Values();
+		long sum = unit + numberPerUnit + addition;
+		if (unit < 0) {
+			if (sum == 0) {
+				values.value = 0;
+				values.frequency = -1;
+			} else if (sum > 0) {
+				values.value = sum;
+				values.frequency = 0;
+			} else if (sum < 0) {
+				values.value = sum % numberPerUnit + numberPerUnit;
+				values.frequency = (unit + addition) / numberPerUnit;
+			}
+		} else {
+			values.value = (unit + addition) % numberPerUnit;
+			values.frequency = (unit + addition) / numberPerUnit;
+		}
+		
+		return values;
+	}
+	
+	private class Values {
+		long value;
+		long frequency;
 	}
 }
