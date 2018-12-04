@@ -41,9 +41,10 @@ public class Main {
 		System.out.println();System.out.println();
 		
 		System.out.println("HourSysGen(24, 100, 100, 1000, 23, 99, 99, 1000)");
-		hourSysGen = new HourSystemGeneralization(24, 100, 100, 1000, 23, 99, 99, 1000); 
+		hourSysGen = new HourSystemGeneralization(24, 100, 100, 1000, 71, 99, 99, 1000); 
 		System.out.println("getHourSysGenInMiliseconds: " + hourSysGen.getHourInMilliseconds());
 		System.out.println("getHourSysGenPretty: " + hourSysGen.getHourPretty());
+		System.out.println("getDayAndHourSysGenPretty: " + hourSysGen.getDayAndHourPretty());
 		
 		System.out.println();System.out.println();
 		

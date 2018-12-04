@@ -2,6 +2,7 @@ package org.miticorp;
 
 // TODO java doc and test classes
 public abstract class Hour {
+	protected long day; // just for speccial cases
 	protected long hour;
 	protected long minute;
 	protected long second;
@@ -24,6 +25,10 @@ public abstract class Hour {
 	protected String getHourPretty() {
 		return hour + ":" + minute + ":" + second + ":" + millisecond;
 	}
+	
+	protected String getDayAndHourPretty() {
+		return day + ":" + hour + ":" + minute + ":" + second + ":" + millisecond;
+	}
 
 	protected Hour validatesAndFormatsHour(long hour, long minute, long second, long millisecond) {
 		long mi, fmi, s, fs, m, fm, h, fh;
@@ -45,6 +50,7 @@ public abstract class Hour {
 		h = values.value; // hour of the day
 		fh = values.frequency; // number of days
 
+		this.day = fh;
 		this.hour = h;
 		this.minute = m;
 		this.second = s;
