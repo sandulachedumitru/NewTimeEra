@@ -3,7 +3,7 @@ package org.miticorp;
 import java.util.ArrayList;
 
 //TODO java doc and test classes
-public class HourOps {
+public class HourOps2 {
 	
 	public static float getTransformationFactor(Hour fromHour, Hour toHour) {
 		return (float) toHour.numberOfMillisecondsPerDay / (float) fromHour.numberOfMillisecondsPerDay;
