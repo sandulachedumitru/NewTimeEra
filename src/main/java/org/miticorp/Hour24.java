@@ -2,7 +2,13 @@ package org.miticorp;
 
 import java.time.LocalTime;
 
-//TODO java doc and test classes
+/**
+ * 
+ * This is a specialized class for hour system of type 24h:60m:60s:1000mil.
+ * It reduces complexity of HourSystemGeneralization class.
+ * @author Dumitru Sandulache - sandulachedumitru@hotmail.com
+ *
+ */
 public class Hour24 extends Hour {
 
 	private LocalTime now24 = LocalTime.now();

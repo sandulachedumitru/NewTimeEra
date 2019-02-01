@@ -48,6 +48,12 @@ public class Main {
 		
 		System.out.println();System.out.println();
 		
+		System.out.println("HourSysGen(30, 100, 100, 100, 32, 12345, 12345, 12345");
+		hourSysGen = new HourSystemGeneralization(30, 100, 100, 1000, 32, 12345, 12345, 12345);
+		System.out.println("getDayAndHourSysGenPretty: " + hourSysGen.getDayAndHourPretty());
+		
+		System.out.println();System.out.println();
+		
 		System.out.println("HourSystemGeneralization24(24, 60, 60, 1000, 16, 44, 49, 0) --> HourSystemGeneralization30(30, 100, 100, 1000)");
 		HourSystemGeneralization hourSysGen24 = new HourSystemGeneralization(24, 60, 60, 1000, 16, 44, 49, 0);
 		HourSystemGeneralization hourSysGen30 = (HourSystemGeneralization) HourOps.getTimeFromhoursysTohoursys(hourSysGen24, new HourSystemGeneralization(30, 100, 100, 1000));

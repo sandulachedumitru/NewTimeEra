@@ -1,8 +1,13 @@
 package org.miticorp;
 
-// TODO java doc and test classes
+/**
+ * 
+ * @author Dumitru Sandulache - sandulachedumitru@hotmail.com
+ * This class abstracts any hour systems
+ * 
+ */
 public abstract class Hour {
-	protected long day; // just for speccial cases
+	protected long day; // just for special cases
 	protected long hour;
 	protected long minute;
 	protected long second;
@@ -30,6 +35,15 @@ public abstract class Hour {
 		return day + ":" + hour + ":" + minute + ":" + second + ":" + millisecond;
 	}
 
+	/**
+	 * This method corrects the values of the hour system.
+	 * If the hour system is for example 30h:100min:100sec:1000mili and the hour is 32:12345:12345:12345 then the corrected hour is 5 days 6 hours 68 minutes 57 seconds 345 milliseconds (5:6:68:57:345)
+	 * @param hour in the system type
+	 * @param minute in the system type
+	 * @param second in the system type
+	 * @param millisecond in the system type
+	 * @return corrected hour
+	 */
 	protected Hour validatesAndFormatsHour(long hour, long minute, long second, long millisecond) {
 		long mi, fmi, s, fs, m, fm, h, fh;
 		Values values;

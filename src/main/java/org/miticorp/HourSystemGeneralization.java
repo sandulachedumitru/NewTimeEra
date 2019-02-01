@@ -1,5 +1,11 @@
 package org.miticorp;
 
+/**
+ * 
+ * This class can hold any hour systems.
+ * @author Dumitru Sandulache - sandulachedumitru@hotmail.com
+ *
+ */
 public class HourSystemGeneralization extends Hour {
 
 	public HourSystemGeneralization(long numberOfHoursPerDay, long numberOfMinutesPerHour, long numberOfSecondsPerMinute, long numberOfMilisecondsPerSecond) {
