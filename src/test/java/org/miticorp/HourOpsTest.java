@@ -126,7 +126,7 @@ public class HourOpsTest {
 		
 		System.out.println("HourSysGen(24, 100, 100, 1000, -1, -1, -25, -1)");
 		// TODO de facut teste pentru numerele negative
-		// TODO algoritmul de formatare a numerelor negative din Hour nu merge
+		// TODO algoritmul de formatare a numerelor negative din Hour nu merge corect corect
 	}
 	
 	@Test

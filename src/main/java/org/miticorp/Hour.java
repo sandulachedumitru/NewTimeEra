@@ -45,7 +45,7 @@ public abstract class Hour {
 	 * @return corrected hour
 	 */
 	protected Hour validatesAndFormatsHour(long hour, long minute, long second, long millisecond) {
-		long mi, fmi, s, fs, m, fm, h, fh;
+		long mi, fmi, s, fs, m, fm, h, fh, day;
 		Values values;
 
 		values = getValues(millisecond, numberOfMillisecondsPerSecond, 0L);
@@ -63,14 +63,71 @@ public abstract class Hour {
 		values = getValues(hour, numberOfHoursPerDay, fm);
 		h = values.value; // hour of the day
 		fh = values.frequency; // number of days
+		day = fh;
+		// ===============================================================================================
+		
+//		long mi2 = 0, fmi2 = 0, s2 = 0, fs2 = 0, m2 = 0, fm2 = 0, h2 = 0, fh2 = 0;
+//		if (mi < 0) {
+//			mi2 = numberOfMillisecondsPerSecond + mi;
+//			fmi2 = -1;
+//		}
+//		if (s < 0) {
+//			s2 = numberOfSecondsPerMinute + (s + fmi2);
+//			fs2= -1;
+//		}
+//		if (m < 0) {
+//			m2= numberOfMinutesPerHour + (m + fs2);
+//			fm2 = -1;
+//		}
+//		if (h < 0) {
+//			h2 = numberOfHoursPerDay + (h + fm2);
+//			fh2 = -1;
+//		}
+//		day = fh + fh2;
+		
+		System.out.println(day + ":" + h + ":" + m + ":" + s + ":" + mi);
+//		System.out.println(fh2 + ":" + h2 + ":" + m2 + ":" + s2 + ":" + mi2);
 
-		this.day = fh;
+		// ===============================================================================================		
+//		this.day = day;
+//		this.hour = h2;
+//		this.minute = m2;
+//		this.second = s2;
+//		this.millisecond = mi2;
+		
+		this.day = day;
 		this.hour = h;
 		this.minute = m;
 		this.second = s;
 		this.millisecond = mi;
 
 		return this;
+	}
+	
+	private Values getValues(long unit, long numberPerUnit, long addition) {
+		Values values = new Values();
+		long value = 0, frequency = 0;
+		
+		value = (unit + addition) % numberPerUnit;
+		frequency = (unit + addition) / numberPerUnit;
+		
+		if (value < 0) {
+			value = numberPerUnit + value;
+			frequency += -1;
+		}
+
+		values.value = value;
+		values.frequency = frequency;
+		return values;
+	}
+	
+	private Values getValues3(long unit, long numberPerUnit, long addition) {
+		Values values = new Values();
+
+		values.value = (unit + addition) % numberPerUnit;
+		values.frequency = (unit + addition) / numberPerUnit;
+
+		return values;
 	}
 	
 	/*
@@ -82,7 +139,7 @@ public abstract class Hour {
 	 * 				= 2222			mi = 222; fmi = 2;
 	 * millisecond = 0 			--> mi = 0;	 fmi = 0
 	 */
-	private Values getValues(long unit, long numberPerUnit, long addition) {
+	private Values getValues2(long unit, long numberPerUnit, long addition) {
 		Values values = new Values();
 		long sum = unit + numberPerUnit + addition;
 		if (unit < 0) {
@@ -107,5 +164,14 @@ public abstract class Hour {
 	private class Values {
 		long value;
 		long frequency;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("HourSysGen(24, 100, 100, 1000, -24, -100, -100, -1000)");
+		HourSystemGeneralization hourSysGen = new HourSystemGeneralization(24, 100, 100, 1000, -24, -100, -100, -1000); 
+		System.out.println("getHourSysGenInMiliseconds: " + hourSysGen.getHourInMilliseconds());
+		System.out.println("getHourSysGenPretty: " + hourSysGen.getDayAndHourPretty());
+		
+		System.out.println();System.out.println();
 	}
 }
