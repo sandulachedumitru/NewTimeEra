@@ -138,6 +138,30 @@ public class Main {
 		System.out.println("HourSysGen(24, 100, 100, 1000, 24, 100, 100, 1000)");
 		hourSysGen = new HourSystemGeneralization(24, 100, 100, 1000, 24, 100, 100, 1000); 
 		System.out.println("getHourSysGenInMiliseconds: " + hourSysGen.getHourInMilliseconds());
-		System.out.println("getHourSysGenPretty: " + hourSysGen.getDayAndHourPretty());	}
-
+		System.out.println("getHourSysGenPretty: " + hourSysGen.getDayAndHourPretty());	
+		
+		System.out.println();System.out.println();
+		
+		System.out.println("HourSysGen(24, 100, 100, 1000, 27, 123, 123, 1234)");
+		hourSysGen = new HourSystemGeneralization(24, 100, 100, 1000, 27, 123, 123, 1234); 
+		System.out.println("getHourSysGenInMiliseconds: " + hourSysGen.getHourInMilliseconds());
+		System.out.println("getHourSysGenPretty: " + hourSysGen.getDayAndHourPretty());	
+		
+		System.out.println();System.out.println();
+		
+		System.out.println("HourSysGen(24, 100, 100, 1000, -12, -12, -12, -123)");
+		hourSysGen = new HourSystemGeneralization(24, 100, 100, 1000, -12, -12, -12, -123); 
+		System.out.println("getHourSysGenInMiliseconds: " + hourSysGen.getHourInMilliseconds());
+		System.out.println("getHourSysGenPretty: " + hourSysGen.getDayAndHourPretty());
+		
+		
+		System.out.println();System.out.println();
+		
+		System.out.println("HourSysGen(24, 100, 100, 1000, 12, 12, 12, 123)");
+		hourSysGen = new HourSystemGeneralization(24, 100, 100, 1000, 12, 12, 12, 123); 
+		System.out.println("getHourSysGenInMiliseconds: " + hourSysGen.getHourInMilliseconds());
+		System.out.println("getHourSysGenPretty: " + hourSysGen.getDayAndHourPretty());
+		
+		
+	}
 }

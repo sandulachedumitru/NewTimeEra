@@ -64,36 +64,6 @@ public abstract class Hour {
 		h = values.value; // hour of the day
 		fh = values.frequency; // number of days
 		day = fh;
-		// ===============================================================================================
-		
-//		long mi2 = 0, fmi2 = 0, s2 = 0, fs2 = 0, m2 = 0, fm2 = 0, h2 = 0, fh2 = 0;
-//		if (mi < 0) {
-//			mi2 = numberOfMillisecondsPerSecond + mi;
-//			fmi2 = -1;
-//		}
-//		if (s < 0) {
-//			s2 = numberOfSecondsPerMinute + (s + fmi2);
-//			fs2= -1;
-//		}
-//		if (m < 0) {
-//			m2= numberOfMinutesPerHour + (m + fs2);
-//			fm2 = -1;
-//		}
-//		if (h < 0) {
-//			h2 = numberOfHoursPerDay + (h + fm2);
-//			fh2 = -1;
-//		}
-//		day = fh + fh2;
-		
-		System.out.println(day + ":" + h + ":" + m + ":" + s + ":" + mi);
-//		System.out.println(fh2 + ":" + h2 + ":" + m2 + ":" + s2 + ":" + mi2);
-
-		// ===============================================================================================		
-//		this.day = day;
-//		this.hour = h2;
-//		this.minute = m2;
-//		this.second = s2;
-//		this.millisecond = mi2;
 		
 		this.day = day;
 		this.hour = h;
@@ -106,7 +76,7 @@ public abstract class Hour {
 	
 	private Values getValues(long unit, long numberPerUnit, long addition) {
 		Values values = new Values();
-		long value = 0, frequency = 0;
+		long value, frequency;
 		
 		value = (unit + addition) % numberPerUnit;
 		frequency = (unit + addition) / numberPerUnit;
@@ -121,57 +91,8 @@ public abstract class Hour {
 		return values;
 	}
 	
-	private Values getValues3(long unit, long numberPerUnit, long addition) {
-		Values values = new Values();
-
-		values.value = (unit + addition) % numberPerUnit;
-		values.frequency = (unit + addition) / numberPerUnit;
-
-		return values;
-	}
-	
-	/*
-	 * Algorithm for millisecond (identical for: second, minute, hour)
-	 * millisecond 	= -1000	< 0	--> s == 0 	--> 1000 + (-1000)	= 0		--> mi = 0;		fmi = -1
-	 * millisecond 	= -1	< 0 --> s > 0 	--> 1000 + (-1)		= 999	--> mi = 999;	fmi = 0;
-	 * millisecond 	= -1001	< 0 --> s < 0 	--> 1000 + (-1001)	= -1	--> mi = 999	fmi = -1
-	 * millisecond 	= 999	> 0 --> mi = 999; fmi = 0;
-	 * 				= 2222			mi = 222; fmi = 2;
-	 * millisecond = 0 			--> mi = 0;	 fmi = 0
-	 */
-	private Values getValues2(long unit, long numberPerUnit, long addition) {
-		Values values = new Values();
-		long sum = unit + numberPerUnit + addition;
-		if (unit < 0) {
-			if (sum == 0) {
-				values.value = 0;
-				values.frequency = -1;
-			} else if (sum > 0) {
-				values.value = sum;
-				values.frequency = 0;
-			} else if (sum < 0) {
-				values.value = sum % numberPerUnit + numberPerUnit;
-				values.frequency = (unit + addition) / numberPerUnit;
-			}
-		} else {
-			values.value = (unit + addition) % numberPerUnit;
-			values.frequency = (unit + addition) / numberPerUnit;
-		}
-		
-		return values;
-	}
-	
 	private class Values {
 		long value;
 		long frequency;
-	}
-	
-	public static void main(String[] args) {
-		System.out.println("HourSysGen(24, 100, 100, 1000, -24, -100, -100, -1000)");
-		HourSystemGeneralization hourSysGen = new HourSystemGeneralization(24, 100, 100, 1000, -24, -100, -100, -1000); 
-		System.out.println("getHourSysGenInMiliseconds: " + hourSysGen.getHourInMilliseconds());
-		System.out.println("getHourSysGenPretty: " + hourSysGen.getDayAndHourPretty());
-		
-		System.out.println();System.out.println();
 	}
 }
