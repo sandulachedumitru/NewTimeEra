@@ -1,6 +1,12 @@
 package org.miticorp;
 
-//TODO java doc and test classes
+/**
+ * 
+ * This is a specialized class for hour system of type 30h:100m:100s:1000mil.
+ * It reduces complexity of HourSystemGeneralization class.
+ * @author Dumitru Sandulache - sandulachedumitru@hotmail.com
+ *
+ */
 public class Hour30 extends Hour {
 	
 	{

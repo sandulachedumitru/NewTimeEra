@@ -2,15 +2,34 @@ package org.miticorp;
 
 import java.util.ArrayList;
 
-//TODO java doc and test classes
+/**
+ * 
+ * This class is used for operations between different classes 
+ * @author Dumitru Sandulache - sandulachedumitru@hotmail.com
+ *
+ */
 public class HourOps {
+	private static String exceptionMessage = "One of the arguments is null.";
 	
+	/**
+	 * This method calculate the transformation factor from hour system to another hour system 
+	 * @param fromHour hour system which will be transformed
+	 * @param toHour transformed hour system
+	 * @return transformation factor
+	 */
 	public static float getTransformationFactor(Hour fromHour, Hour toHour) {
+		if (fromHour == null || toHour == null) throw new IllegalArgumentException(exceptionMessage);
 		return (float) toHour.numberOfMillisecondsPerDay / (float) fromHour.numberOfMillisecondsPerDay;
 	}
 	
+	/**
+	 * This method actually transforms an hour system to another one. 
+	 * @param fromHour hour system which will be transformed
+	 * @param toHour transformed hour system
+	 * @return transformed hour system which is actually the same object with toHour parameter
+	 */
 	public static Hour getTimeFromhoursysTohoursys(Hour fromHour, Hour toHour) {
-		if (fromHour == null || toHour == null) throw new IllegalArgumentException("One of the arguments is null.");
+		if (fromHour == null || toHour == null) throw new IllegalArgumentException(exceptionMessage);
 		boolean flag = false;
 
 		long fromHourInMilliseconds = fromHour.getHourInMilliseconds();
