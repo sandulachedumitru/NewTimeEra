@@ -32,6 +32,7 @@ public class HourOpsTest {
 		
 		printLog(fromHour, toHour);
 		LOG.info("The transformation factor is: {}", factor);
+		LOG.info(testSeparator);
 		
 		assertEquals(expectedFactor, transfFactor);
 	}
@@ -241,7 +242,6 @@ public class HourOpsTest {
 				toHour.numberOfSecondsPerMinute, 
 				toHour.numberOfMillisecondsPerSecond);
 		LOG.info("The selected hours are: {}h:{}m:{}s:{}mi and {}h:{}m:{}s:{}mi.", fromHour.hour, fromHour.minute, fromHour.second, fromHour.millisecond, toHour.hour, toHour.minute, toHour.second, toHour.millisecond);
-		LOG.info(testSeparator);
 	}
 	
 	private static void testCyclesOfDay(long n) {
