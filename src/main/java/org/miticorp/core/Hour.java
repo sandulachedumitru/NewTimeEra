@@ -1,4 +1,4 @@
-package org.miticorp;
+package org.miticorp.core;
 
 /**
  * 

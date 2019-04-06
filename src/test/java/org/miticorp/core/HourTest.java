@@ -1,4 +1,4 @@
-package org.miticorp;
+package org.miticorp.core;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.miticorp.core.Hour;
 
 public class HourTest {
 	private Hour hour =  new Hour() {};
