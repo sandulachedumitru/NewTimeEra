@@ -1,10 +1,15 @@
-package org.miticorp;
+package org.miticorp.core;
 
 import static org.junit.Assert.*;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.miticorp.core.Hour;
+import org.miticorp.core.Hour24;
+import org.miticorp.core.Hour30;
+import org.miticorp.core.HourOps;
+import org.miticorp.core.HourSystemGeneralization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

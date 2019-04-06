@@ -1,41 +1,40 @@
-package org.miticorp;
+package org.miticorp.core;
 
 import static org.junit.Assert.*;
 
 import java.time.LocalTime;
 
 import org.junit.Test;
+import org.miticorp.core.Hour;
+import org.miticorp.core.Hour24;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Hour30Test {
+public class Hour24Test {
 	private Hour hour;
 	private static final Logger LOG = LoggerFactory.getLogger(HourTest.class);
 
 	@Test
-	public void testHour30Now() {
-		hour = new Hour30();
+	public void testHour24Now() {
+		hour = new Hour24();
 		LocalTime time = LocalTime.now();
-		long h = time.getHour(), m = time.getMinute(), s = time.getSecond(), mi = time.getNano() / 1000 / 1000;
-		Hour24 hour24 = new Hour24(h, m, s, mi);
-		Hour30 hour30 = (Hour30) HourOps.getTimeFromhoursysTohoursys(hour24, hour);
 		
 		LOG.info("The hour system is of type {}h:{}m:{}s:{}mil", 
 				hour.numberOfHoursPerDay, 
 				hour.numberOfMinutesPerHour, 
 				hour.numberOfSecondsPerMinute, 
 				hour.numberOfMillisecondsPerSecond);
-		LOG.info("The time is: {}", hour.getHourPretty());
+		LOG.info("The time is: {}", time.toString());
 		
-		assertEquals(hour.hour, hour30.hour);
-		assertEquals(hour.minute, hour30.minute);
-		assertEquals(hour.second, hour30.second);
+		assertEquals(hour.hour, time.getHour());
+		assertEquals(hour.minute, time.getMinute());
+		assertEquals(hour.second, time.getSecond());
 	}
 
 	@Test
-	public void testHour30Custom() {
-		long h = 29, m = 99, s = 99, mi = 1000;
-		hour =  new Hour30(h, m, s, mi);
+	public void testHour24Custom() {
+		long h = 23, m = 59, s = 59, mi = 1000; 
+		hour =  new Hour24(h, m, s, mi);
 		
 		LOG.info("The hour system is of type {}h:{}m:{}s:{}mil", 
 				hour.numberOfHoursPerDay, 
@@ -50,7 +49,5 @@ public class Hour30Test {
 		assertEquals(hour.second, 0);
 		assertEquals(hour.millisecond, 0);
 	}
-
-
 
 }

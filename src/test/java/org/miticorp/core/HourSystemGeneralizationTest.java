@@ -1,10 +1,14 @@
-package org.miticorp;
+package org.miticorp.core;
 
 import static org.junit.Assert.*;
 
 import java.time.LocalTime;
 
 import org.junit.Test;
+import org.miticorp.core.Hour;
+import org.miticorp.core.Hour24;
+import org.miticorp.core.HourOps;
+import org.miticorp.core.HourSystemGeneralization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
